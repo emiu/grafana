@@ -204,6 +204,9 @@ function (angular, app, _, kbn, TimeSeries, PanelMeta) {
           data.valueRounded = 0;
         } else {
           data.value = $scope.series[0].stats[$scope.panel.valueName];
+          if ($scope.panel.divisor && !isNaN(data.value)) {
+            data.value /= $scope.panel.divisor;
+          }
           data.flotpairs = $scope.series[0].flotpairs;
 
           var decimalInfo = $scope.getDecimalsForValue(data.value);
